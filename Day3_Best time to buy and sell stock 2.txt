@@ -1,0 +1,21 @@
+class Solution {
+public:
+
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        vector<int> next(2,0);
+        vector<int> curr(2,0);
+        for(int i=n-1;i>=0;i--){
+            for(int j=0;j<=1;j++){
+              if(j == 0){
+    curr[j] = max(next[0] , -prices[i] + next[1] );
+    }
+    else{
+    curr[j] = max(next[1],prices[i] + next[0]);  
+    }  
+            }
+            next = curr;
+        }
+     return curr[0];
+    }
+};
